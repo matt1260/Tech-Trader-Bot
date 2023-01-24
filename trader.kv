@@ -1,0 +1,163 @@
+#:import hex kivy.utils.get_color_from_hex
+
+<MainBox>:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+    canvas.before:
+        Color:
+            rgba: hex('#00AAEE')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            
+    BoxLayout:
+        size_hint_y: .125
+        orientaiton: 'horizontal'
+        Label:
+            size_hint_x: .3
+            text: 'Active Ticker:'
+            font_size: '18dp'
+            color: 0, 0, 0, 1
+            bold: True
+        Label:
+            id: ticker_box
+            size_hint_x: .1
+            text: 'QQQ'
+            font_size: '18dp'
+            color: 0, 0, 0, 1
+            bold: True
+        TextInput:
+            id: ticker_input
+            size_hint_x: .3
+        Button:
+            size_hint_x: .3
+            text: 'Change'
+            on_release: root.ticker_submit()
+            
+
+    BoxLayout:
+        size_hint_y: .125
+        orientaiton: 'horizontal'
+        Label:
+            id: status_box
+            size_hint_x: .6
+            text: 'status'
+            font_size: '18dp'
+            color: 0, 0, 0, 1
+            bold: True
+            canvas.before:
+                Color:
+                    rgba: .8, .8, .8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Label:
+            size_hint_x: .25
+            text: 'Last Price:'
+            font_size: '18dp'
+            color: 0, 0, 0, 1
+            bold: True
+
+        Label:
+            id: price_box
+            size_hint_x: .15
+            color: 0, 0, 0, 1
+            bold: True
+            text: '$$$$'
+            
+
+
+    GridLayout:
+        size_hint_y: .75
+        cols: 3
+        padding: 10, 5
+        spacing: 35, 5
+
+        # First Row
+        Button:
+            text: 'Buy 1 CALL'
+            on_release:
+                root.buy_call(1, self)
+        Button:
+            text: 'Buy 2 CALLS'
+            on_release:
+                root.buy_call(2, self)
+        Button:
+            text: 'Buy 5 CALLS'
+            on_release:
+                root.buy_call(5, self)
+
+
+        # Second Row
+        Button:
+            text: 'Close 1 CALL'
+            on_release:
+                root.sell_option(1, self)
+        Button:
+            text: 'Close 2 CALLS'
+            on_release:
+                root.sell_option(2, self)
+        Button:
+            text: 'Close 5 CALLS'
+            on_release:
+                root.sell_option(5, self)
+
+
+        # Third Row
+        Button:
+            text: 'Cancel Order'
+            on_release:
+                root.cancel_quickdraw_order()
+        Button:
+            text: 'FLip'
+            on_release:
+                root.flip(self)
+        Label:
+            text: ''
+
+
+
+        # Forth Row
+        Button:
+            text: 'Buy 1 PUT'
+            on_release:
+                root.buy_put(1, self)
+        Button:
+            text: 'Buy 2 PUTS'
+            on_release:
+                root.buy_put(2, self)
+        Button:
+            text: 'Buy 5 PUTS'
+            on_release:
+                root.buy_put(5, self)
+                
+
+        # Fifth Row
+        Button:
+            text: 'Sell 1 PUT'
+            on_release:
+                root.sell_option(1, self)
+        Button:
+            text: 'Sell 2 PUTS'
+            on_release:
+                root.sell_option(2, self)
+        Button:
+            text: 'Sell 5 PUTS'
+            on_release:
+                root.sell_option(5, self)
+
+
+        # Sixth Row
+        Button:
+            text: 'Close All'
+            on_release:
+                root.closeall(self)
+
+        Label:
+            text: ''
+
+        Label:
+            text: ''
+
